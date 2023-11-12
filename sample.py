@@ -8,9 +8,9 @@ class ElferRaus:
         self.MaxPlayers = maxplayers
         self._Round = startround
         self._CardAmount = list(range(1, maxcards)) + list(range(maxcards, 1-1, -1))
-        self._MaxRound = maxcards*2-1 # range(maxcards) +range(maxcards-1)
+        self._MaxRound = maxcards*2-1  # range(maxcards) +range(maxcards-1)
 
-    #def getPlayerNames(self):
+    # def getPlayerNames(self):
     #    return [player["name"] for player in self._PlayerData]
 
     def getPlayerNumber(self):
@@ -80,7 +80,7 @@ class TkinterApp:
         self.tk.mainloop()
 
 
-    def displayScreen_Names(self): # GUI für Spielernamen-Eingabe
+    def displayScreen_Names(self):  # GUI für Spielernamen-Eingabe
         for widget in self.tk.winfo_children(): widget.grid_forget()
 
         self.titleLabel.config(text="Spielernamen")
@@ -89,7 +89,7 @@ class TkinterApp:
         self.nextButton.config(command=self.setPlayerNames)
         self.nextButton.pack()
 
-    def setPlayerNames(self): # Speichert eingegebene Spielernamen
+    def setPlayerNames(self):  # Speichert eingegebene Spielernamen
         for entry in self.Entrys:
             if entry.get() != "":
                 self._game.addPlayer(name=entry.get())
@@ -164,6 +164,7 @@ class TkinterApp:
 
 
         self.nextButton.pack()
+
     def Reset(self):
         self._game.addRound()
         self.displayScreen_Tips()
