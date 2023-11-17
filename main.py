@@ -1,6 +1,6 @@
 from tkinter import Tk, Label
 
-from game import Game
+from game import Game, Fr
 
 class App:
     def __init__(self):
@@ -23,7 +23,10 @@ class App:
         self.tk.geometry(f'{self.width}x{self.height}+0+0')
 
         self.label = Label(master=self.tk)
-        self.label.grid(row=0, column=0, sticky="nswe")
+        #self.label.grid(row=0, column=0, sticky="nswe")
+
+        self.fr = Fr(self.tk)
+        self.fr.grid(row=0, column=0, sticky="nsew")
 
 
 if __name__ == "__main__":

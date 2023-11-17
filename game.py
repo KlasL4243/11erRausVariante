@@ -1,7 +1,18 @@
+from tkinter import Frame, Label
+
 def rotated(list_: list, index_: int) -> list:
     index_ = index_ % len(list_)
     return list_[index_:] + list_[0: index_]
 
+class Fr(Frame):
+    def __init__(self, master):
+        super().__init__(master=master)
+
+        self.grid_rowconfigure(0, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+
+        self.label = Label(master=self, text="Frame")
+        self.label.grid(row=0, column=0, sticky="nswe")
 
 class Game:
     def __init__(self, max_cards=7):
