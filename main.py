@@ -1,25 +1,29 @@
 from tkinter import Tk, Label
 
+class App:
+    def __init__(self):
+        self.tk = Tk()
+
+        self.tk.grid_rowconfigure(0, weight=1)
+        self.tk.grid_columnconfigure(0, weight=1)
+
+        self.width = 1080
+        self.height = 2076
+
+        self.screen_width = self.tk.winfo_screenwidth()
+        self.screen_height = self.tk.winfo_screenheight()
+
+        if self.height != self.screen_height:  # not mobile
+            self.width //= 2
+            self.height //= 2
+
+        self.tk.geometry(f'{self.width}x{self.height}+0+0')
+
+        label = Label(master=self.tk, text=f"{self.width} x {self.height}")
+        label.grid(row=0, column=0, sticky="nswe")
+
+
 if __name__ == "__main__":
-    tk = Tk()
+    app = App()
 
-    tk.grid_rowconfigure(0, weight=1)
-    tk.grid_columnconfigure(0, weight=1)
-
-    width = 1080
-    height = 2076
-
-    screen_width = tk.winfo_screenwidth()
-    screen_height = tk.winfo_screenheight()
-
-    if height != screen_height:  # not mobile
-        width //= 2
-        height //= 2
-
-
-    tk.geometry(f'{width}x{height}+0+0')
-
-    label = Label(master=tk, text=f"{width} x {height}")
-    label.grid(row=0, column=0, sticky="nswe")
-
-    tk.mainloop()
+    app.tk.mainloop()
