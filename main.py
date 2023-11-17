@@ -1,9 +1,15 @@
-from source.app.app import App
+from tkinter import Tk, Label
 
 if __name__ == "__main__":
-    player_list = ["Lukas", "Mirjam", "Maik", "Selina"]
+    tk = Tk()
 
-    app = App()
-    app.game.addPlayers(player_list)
+    tk.grid_rowconfigure(0, weight=1)
+    tk.grid_columnconfigure(0, weight=1)
 
-    app.mainloop()
+    width = tk.winfo_screenwidth()
+    height = tk.winfo_height()
+
+    label = Label(master=tk, text=f"{width}, {height}")
+    label.grid(row=0, column=0, sticky="nswe")
+
+    tk.mainloop()
