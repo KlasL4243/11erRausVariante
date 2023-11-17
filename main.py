@@ -11,15 +11,15 @@ class App:
         self.tk.grid_rowconfigure(index=0, weight=1)
         self.tk.grid_columnconfigure(index=0, weight=1)
 
-        self.width = 1080
-        self.height = 2076
+        self.width = 1080//2
+        self.height = 2076//2
 
         self.screen_width = self.tk.winfo_screenwidth()
         self.screen_height = self.tk.winfo_screenheight()
 
-        if self.height != self.screen_height:  # halfing size for desktop
-            self.width //= 2
-            self.height //= 2
+        #if self.height != self.screen_height:  # halfing size for desktop
+        #    self.width //= 2
+        #    self.height //= 2
 
         self.tk.geometry(f'{self.width}x{self.height}+0+0')
         self.home_frame = HomeFrame(master=self.tk)
