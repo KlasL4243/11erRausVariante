@@ -1,8 +1,11 @@
 from tkinter import Tk, Label
 
+from game import Game
+
 class App:
     def __init__(self):
         self.tk = Tk()
+        self.game = Game()
 
         self.tk.grid_rowconfigure(0, weight=1)
         self.tk.grid_columnconfigure(0, weight=1)
@@ -19,11 +22,16 @@ class App:
 
         self.tk.geometry(f'{self.width}x{self.height}+0+0')
 
-        label = Label(master=self.tk, text=f"{self.width} x {self.height}")
-        label.grid(row=0, column=0, sticky="nswe")
+        self.label = Label(master=self.tk)
+        self.label.grid(row=0, column=0, sticky="nswe")
 
 
 if __name__ == "__main__":
     app = App()
+
+    player_list = ["Lukas", "Mirjam", "Maik", "Selina"]
+
+    app.game.addPlayers(player_list)
+    app.label["text"] = ", ".join(app.game.players.keys())
 
     app.tk.mainloop()
