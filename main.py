@@ -11,17 +11,19 @@ class App:
         self.tk.grid_rowconfigure(index=0, weight=1)
         self.tk.grid_columnconfigure(index=0, weight=1)
 
-        self.width = 1080//2
-        self.height = 2076//2
+        self.width = 1080
+        self.height = 2076
 
         self.tk.update()
-        if not self.tk.geometry().startswith("1080x2076"):
-            print(self.tk.geometry())
-        else:
-            print("mobile")
-        exit()
+        self.is_mobile = self.tk.geometry().startswith(f"{self.width}x{self.height}")
 
-        self.tk.geometry(f'{self.width}x{self.height}')
+        if not self.is_mobile:
+            # halfing size to fit desktop
+            self.width //= 2
+            self.height //= 2
+            # mobile size unchangble anyway
+            self.tk.geometry(f'{self.width}x{self.height}+0+0')
+
         self.home_frame = HomeFrame(master=self.tk)
         self.home_frame.grid(row=0, column=0)
 
