@@ -25,8 +25,6 @@ class App:
         self.home_frame = HomeFrame(master=self.tk)
         self.home_frame.grid(row=0, column=0)
 
-        self.tk.update()
-        print(self.tk.geometry())
 
 
 if __name__ == "__main__":
