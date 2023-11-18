@@ -14,6 +14,7 @@ class App:
         self.width = 1080//2
         self.height = 2076//2
 
+        self.tk.update()
         if not self.tk.geometry().startswith("1080x2076"):
             print(self.tk.geometry())
         else:
