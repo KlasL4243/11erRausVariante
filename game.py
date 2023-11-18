@@ -1,10 +1,14 @@
-from json import load, dump
+from pandas import DataFrame, read_csv
+from glob import glob
+
 
 
 class Game:
     def __init__(self, max_cards=7):
         self.max_cards = max_cards
-        self.players = {}
+        self.df = None
+        self.game_name = ""
+        self.players = []
 
         self.order = []
         self.index = 0
@@ -12,18 +16,22 @@ class Game:
         self.sub_index = 0
 
         # rounds are range 1 to max to 1
-        self.rounds = list(range(1, self.max_cards, 1)) + list(range(max_cards, 0, -1))
+        self.rounds = list(range(1, self.max_cards, 1)) + list(range(self.max_cards, 0, -1))
         self.round_number = len(self.rounds)
 
-        # load games
-        with open("data.json", mode='r', encoding="utf-8") as file:
-            self.data = load(file)
+
+    def save(self):
+        self.df.to_csv(f"saves/save_{self.game_name}.csv", index=False)
+
+    def load(self, name):
+        self.df = read_csv(f"saves/{name}.csv")
 
     def available(self, name: str) -> bool:
-        return name not in self.data.keys()
+        return name not in self.saves_list()
 
-    def saves_list(self) -> list[str]:
-        return [name for name, game_data in self.data.items() if not game_data["completed"]]
+    @staticmethod
+    def saves_list() -> list[str]:
+        return [save.split("save_")[1].split(".")[0] for save in glob("saves/*.csv")]
 
     @staticmethod
     def rotated(list_: list, index_: int) -> list:
@@ -31,17 +39,17 @@ class Game:
         return list_[index_:] + list_[0: index_]
 
     def addPlayers(self, players: list):
-        for player in players:
-            self.players[player] = {
-                "bets": [-1 * self.round_number],
-                "wins": [-1 * self.round_number],
-                "scores": [-1 * self.round_number]}
+        data_list = [[player, index, cards, 0, 0, 0] for player in players for index, cards in enumerate(self.rounds)]
+
+        self.df = DataFrame(data=data_list, columns=["player", "index", "cards", "bet", "wins", "score"])
+        self.players = players
+        self.save()
 
     def set_order(self):
-        self.order = self.rotated(list(self.players.keys()), self.index)
+        self.order = self.rotated(list(self.players), self.index)
 
     def set_sub_order(self):
-        self.sub_order = self.rotated(list(self.players.keys()), self.sub_index)
+        self.sub_order = self.rotated(list(self.players), self.sub_index)
 
     def get_cards(self) -> int:
         return self.rounds[self.index]

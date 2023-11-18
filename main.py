@@ -5,12 +5,12 @@ from game import Game
 from frames.homeFrame import HomeFrame
 from frames.newGameFrame import NewGameFrame
 from frames.resumeGameFrame import ResumeGameFrame
+from frames.namesFrame import NamesFrame
 
 class App(Tk):
-    def __init__(self):
+    def __init__(self, game: Game):
         super().__init__()
-
-        self.game = Game()
+        self.game = game
 
         self.grid_rowconfigure(index=0, weight=1)
         self.grid_columnconfigure(index=0, weight=1)
@@ -30,19 +30,18 @@ class App(Tk):
 
         self.main_font = Font(family="Segoe UI", size=(24 if self.is_mobile else 36), weight="bold")
 
-        self.home_frame = HomeFrame(master=self)
-        self.new_game_frame = NewGameFrame(master=self)
-        self.resume_game_frame = ResumeGameFrame(master=self)
+        self.home_frame = HomeFrame(master=self, main_font=self.main_font, game=self.game, is_mobile=self.is_mobile)
+        self.new_game_frame = NewGameFrame(master=self, main_font=self.main_font, game=self.game)
+        self.resume_game_frame = ResumeGameFrame(master=self, main_font=self.main_font, game=self.game)
+        self.names_frame = NamesFrame(master=self, main_font=self.main_font, game=self.game)
 
 
         self.home_frame.grid(row=0, column=0)
 
 
-
 if __name__ == "__main__":
-    app = App()
-
-    player_list = ["Lukas", "Mirjam", "Maik", "Selina"]
-    app.game.addPlayers(player_list)
+    game = Game()
+    app = App(game=game)
 
     app.tk.mainloop()
+    game.save()
