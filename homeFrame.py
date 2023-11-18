@@ -5,11 +5,10 @@ class HomeFrame(Frame):
     def __init__(self, master):
         super().__init__(master=master)
         self.is_mobile = master.is_mobile
-        print(self.is_mobile)
 
         # no expanding
 
-        self.font24 = Font(family="Segoe UI", size=24, weight="bold")
+        self.font24 = Font(family="Segoe UI", size=(12 if self.is_mobile else 24), weight="bold")
         self.button_width = 20
 
         self.new_game_button = Button(master=self, font=self.font24, width=self.button_width, text="Neues Spiel", state="disabled")
