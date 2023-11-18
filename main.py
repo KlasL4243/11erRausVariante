@@ -3,28 +3,29 @@ from tkinter import Tk, Label
 from game import Game
 from homeFrame import HomeFrame
 
-class App:
+class App(Tk):
     def __init__(self):
-        self.tk = Tk()
+        super().__init__()
+
         self.game = Game()
 
-        self.tk.grid_rowconfigure(index=0, weight=1)
-        self.tk.grid_columnconfigure(index=0, weight=1)
+        self.grid_rowconfigure(index=0, weight=1)
+        self.grid_columnconfigure(index=0, weight=1)
 
         self.width = 1080
         self.height = 2076
 
-        self.tk.update()
-        self.is_mobile = self.tk.geometry().startswith(f"{self.width}x{self.height}")
+        self.update()
+        self.is_mobile = self.geometry().startswith(f"{self.width}x{self.height}")
 
         if not self.is_mobile:
             # halfing size to fit desktop
             self.width //= 2
             self.height //= 2
             # mobile size unchangble anyway
-            self.tk.geometry(f'{self.width}x{self.height}+0+0')
+            self.geometry(f'{self.width}x{self.height}+0+0')
 
-        self.home_frame = HomeFrame(master=self.tk)
+        self.home_frame = HomeFrame(master=self)
         self.home_frame.grid(row=0, column=0)
 
 
