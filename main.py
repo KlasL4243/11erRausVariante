@@ -11,6 +11,7 @@ class App:
         self.tk.grid_rowconfigure(index=0, weight=1)
         self.tk.grid_columnconfigure(index=0, weight=1)
 
+        self.tk.update()
         print(self.tk.geometry())
 
         self.width = 1080//2
@@ -23,6 +24,7 @@ class App:
         self.home_frame = HomeFrame(master=self.tk)
         self.home_frame.grid(row=0, column=0)
 
+        self.tk.update()
         print(self.tk.geometry())
 
 
