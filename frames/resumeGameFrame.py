@@ -24,3 +24,4 @@ class ResumeGameFrame(BaseFrame):
         name = self.box.get()
         if not self.game.available(name):
             self.game.load(name)
+            self.gridFrame("betsframe")

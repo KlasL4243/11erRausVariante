@@ -1,8 +1,6 @@
 from pandas import DataFrame, read_csv
 from glob import glob
 
-
-
 class Game:
     def __init__(self, max_cards=7):
         self.max_cards = max_cards
