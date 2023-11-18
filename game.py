@@ -1,6 +1,4 @@
-def rotated(list_: list, index_: int) -> list:
-    index_ = index_ % len(list_)
-    return list_[index_:] + list_[0: index_]
+from json import load, dump
 
 
 class Game:
@@ -17,6 +15,19 @@ class Game:
         self.rounds = list(range(1, self.max_cards, 1)) + list(range(max_cards, 0, -1))
         self.round_number = len(self.rounds)
 
+        with open("data.json", mode='x') as file:
+            dump({"test": "1212"}, file, indent=4)
+
+        with open("data.json", mode='r') as file:
+            self.data = load(file)
+
+        print(self.data)
+
+    @staticmethod
+    def rotated(list_: list, index_: int) -> list:
+        index_ = index_ % len(list_)
+        return list_[index_:] + list_[0: index_]
+
     def addPlayers(self, players: list):
         for player in players:
             self.players[player] = {
@@ -25,10 +36,10 @@ class Game:
                 "scores": [-1 * self.round_number]}
 
     def set_order(self):
-        self.order = rotated(list(self.players.keys()), self.index)
+        self.order = self.rotated(list(self.players.keys()), self.index)
 
     def set_sub_order(self):
-        self.sub_order = rotated(list(self.players.keys()), self.sub_index)
+        self.sub_order = self.rotated(list(self.players.keys()), self.sub_index)
 
     def get_cards(self) -> int:
         return self.rounds[self.index]
