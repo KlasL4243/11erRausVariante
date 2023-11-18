@@ -46,8 +46,16 @@ class App(Tk):
 
 
 if __name__ == "__main__":
-    game = Game()
-    app = App(game=game)
+    from cProfile import Profile
+    from pstats import Stats, SortKey
 
-    app.tk.mainloop()
-    game.save()
+    with Profile() as pr:
+        game = Game()
+        app = App(game=game)
+
+        app.tk.mainloop()
+        game.save()
+
+    stats = Stats(pr)
+    stats.sort_stats(SortKey.TIME)
+    stats.print_stats()
