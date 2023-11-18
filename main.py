@@ -1,11 +1,14 @@
 from tkinter import Tk
 from tkinter.font import Font
 
-from game import Game
 from frames.homeFrame import HomeFrame
 from frames.newGameFrame import NewGameFrame
 from frames.resumeGameFrame import ResumeGameFrame
 from frames.namesFrame import NamesFrame
+from frames.betsFrame import BetsFrame
+
+from game import Game
+
 
 class App(Tk):
     def __init__(self, game: Game):
@@ -30,10 +33,13 @@ class App(Tk):
 
         self.main_font = Font(family="Segoe UI", size=(24 if self.is_mobile else 36), weight="bold")
 
-        self.home_frame = HomeFrame(master=self, main_font=self.main_font, game=self.game, is_mobile=self.is_mobile)
-        self.new_game_frame = NewGameFrame(master=self, main_font=self.main_font, game=self.game)
-        self.resume_game_frame = ResumeGameFrame(master=self, main_font=self.main_font, game=self.game)
-        self.names_frame = NamesFrame(master=self, main_font=self.main_font, game=self.game)
+        self.frame_kwargs = {"master": self, "main_font": self.main_font, "game": self.game}
+
+        self.home_frame = HomeFrame(**self.frame_kwargs, is_mobile=self.is_mobile)
+        self.new_game_frame = NewGameFrame(**self.frame_kwargs)
+        self.resume_game_frame = ResumeGameFrame(**self.frame_kwargs)
+        self.names_frame = NamesFrame(**self.frame_kwargs)
+        self.bets_frame = BetsFrame(**self.frame_kwargs)
 
 
         self.home_frame.grid(row=0, column=0)

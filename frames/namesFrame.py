@@ -26,5 +26,6 @@ class NamesFrame(BaseFrame):
             return
 
         self.game.addPlayers(players=names)
+        self.gridFrame("betsframe")
 
 

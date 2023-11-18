@@ -21,10 +21,16 @@ class Game:
 
 
     def save(self):
-        self.df.to_csv(f"saves/save_{self.game_name}.csv", index=False)
+        if self.df is not None:
+            self.df.to_csv(f"saves/save_{self.game_name}.csv", index=False)
+            print(f"save_{self.game_name}.csv saved!")
+            return
+        print("nothing to save!")
 
     def load(self, name):
-        self.df = read_csv(f"saves/{name}.csv")
+        self.game_name = name
+        self.df = read_csv(f"saves/save_{name}.csv")
+        print(f"save_{name}.csv loaded!")
 
     def available(self, name: str) -> bool:
         return name not in self.saves_list()

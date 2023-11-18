@@ -10,7 +10,7 @@ class ResumeGameFrame(BaseFrame):
         self.box = Combobox(master=self, font=self.main_font, width=12, values=self.game.saves_list(), state="readonly")
         self.option_add("*TCombobox*Listbox*Font", self.main_font)
 
-        self.next_button = Button(master=self, font=self.main_font, width=12, text="Weiter", state="disabled")
+        self.next_button = Button(master=self, font=self.main_font, width=12, text="Weiter")
         self.back_button = Button(master=self, font=self.main_font, width=12, text="Zurück")
         self.next_button["command"] = self.resume_game
         self.back_button["command"] = lambda: self.gridFrame("homeframe")
