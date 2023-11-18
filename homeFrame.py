@@ -4,6 +4,8 @@ from tkinter.font import Font
 class HomeFrame(Frame):
     def __init__(self, master):
         super().__init__(master=master)
+        self.is_mobile = master.is_mobile
+        print(self.is_mobile)
 
         # no expanding
 
