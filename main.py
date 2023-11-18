@@ -36,16 +36,13 @@ class App(Tk):
         self.frame_kwargs = {"master": self, "main_font": self.main_font, "game": self.game}
 
         self.home_frame = HomeFrame(**self.frame_kwargs, is_mobile=self.is_mobile)
-        self.home_frame.grid(row=0, column=0)
-        self.update()
-
         self.new_game_frame = NewGameFrame(**self.frame_kwargs)
         self.resume_game_frame = ResumeGameFrame(**self.frame_kwargs)
         self.names_frame = NamesFrame(**self.frame_kwargs)
         self.bets_frame = BetsFrame(**self.frame_kwargs)
 
 
-
+        self.home_frame.grid(row=0, column=0)
 
 
 if __name__ == "__main__":
@@ -59,6 +56,7 @@ if __name__ == "__main__":
         app.tk.mainloop()
         game.save()
 
+
     stats = Stats(pr)
     stats.sort_stats(SortKey.TIME)
-    stats.print_stats()
+    # stats.print_stats()

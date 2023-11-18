@@ -28,6 +28,7 @@ class Game:
     def load(self, name):
         self.game_name = name
         self.df = read_csv(f"saves/save_{name}.csv")
+        self.players = list(set(self.df["player"]))
         print(f"save_{name}.csv loaded!")
 
     def available(self, name: str) -> bool:
