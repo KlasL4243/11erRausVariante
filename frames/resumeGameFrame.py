@@ -10,6 +10,8 @@ class ResumeGameFrame(Frame):
 
         self.label = Label(master=self, font=self.main_font, width=12, text="Spielstände")
         self.box = Combobox(master=self, font=self.main_font, width=12, values=self.game.saves_list(), state="readonly")
+        self.option_add("*TCombobox*Listbox*Font", self.main_font)
+
         self.next_button = Button(master=self, font=self.main_font, width=12, text="Weiter", command=self.resume_game)
         self.back_button = Button(master=self, font=self.main_font, width=12, text="Zurück", command=self.frame_Home)
 

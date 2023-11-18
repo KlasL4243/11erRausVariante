@@ -18,7 +18,7 @@ class App(Tk):
         self.width = 1080
         self.height = 2076
 
-        self.is_mobile = self.winfo_screenwidth() == str(self.width)
+        self.is_mobile = self.winfo_screenwidth() == self.width
 
         if not self.is_mobile:
             # halfing size to fit desktop
