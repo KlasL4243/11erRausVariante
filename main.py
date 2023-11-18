@@ -24,6 +24,7 @@ class App(Tk):
             self.height //= 2
             # mobile size unchangble anyway
             self.geometry(f'{self.width}x{self.height}+0+0')
+            self.resizable(False, False)
 
         self.home_frame = HomeFrame(master=self)
         self.home_frame.grid(row=0, column=0)

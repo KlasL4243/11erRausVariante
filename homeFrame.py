@@ -8,8 +8,8 @@ class HomeFrame(Frame):
 
         # no expanding
 
-        self.font24 = Font(family="Segoe UI", size=24, weight="bold")
-        self.button_width = (12 if self.is_mobile else 20)
+        self.font24 = Font(family="Segoe UI", size=(24 if self.is_mobile else 36), weight="bold")
+        self.button_width = 12
 
         self.new_game_button = Button(master=self, font=self.font24, width=self.button_width, text="Neues Spiel", state="disabled")
         self.resume_button = Button(master=self, font=self.font24, width=self.button_width, text="Fortsetzen", state="disabled")
