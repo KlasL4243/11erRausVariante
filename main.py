@@ -1,9 +1,9 @@
-from customtkinter import CTk
+from tkinter import Tk
 
 from game import Game
 from homeFrame import HomeFrame
 
-class App(CTk):
+class App(Tk):
     def __init__(self):
         super().__init__()
 
