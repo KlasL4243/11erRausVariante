@@ -37,6 +37,7 @@ class App(Tk):
 
         self.home_frame = HomeFrame(**self.frame_kwargs, is_mobile=self.is_mobile)
         self.home_frame.grid(row=0, column=0)
+        self.update()
 
         self.new_game_frame = NewGameFrame(**self.frame_kwargs)
         self.resume_game_frame = ResumeGameFrame(**self.frame_kwargs)
