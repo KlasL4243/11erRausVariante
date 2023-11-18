@@ -15,7 +15,7 @@ class App:
         self.height = 2076//2
 
         if not self.tk.geometry().startswith("1080x2076"):
-            print(self.tk.geometry().startswith("1080x2076"))
+            print(self.tk.geometry())
         else:
             print("mobile")
         exit()
