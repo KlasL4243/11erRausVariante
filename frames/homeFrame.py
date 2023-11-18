@@ -11,7 +11,7 @@ class HomeFrame(Frame):
         self.button_kwargs = {"master": self, "font": self.main_font, "width": 12}
 
         self.new_game_button = Button(**self.button_kwargs, text="Neues Spiel", command=self.frame_newGame)
-        self.resume_button = Button(**self.button_kwargs, text="Fortsetzen", state="disabled")
+        self.resume_button = Button(**self.button_kwargs, text="Fortsetzen", command=self.frame_resumeGame)
         self.close_button = Button(**self.button_kwargs, text="Beenden", command=self.tk.quit)
 
         self.new_game_button.grid(row=0, column=0, sticky="nswe", padx=5, pady=5)
@@ -21,3 +21,7 @@ class HomeFrame(Frame):
     def frame_newGame(self, event=None):
         self.grid_forget()
         self.nametowidget(".!newgameframe").grid(row=0, column=0)
+
+    def frame_resumeGame(self, event=None):
+        self.grid_forget()
+        self.nametowidget(".!resumegameframe").grid(row=0, column=0)

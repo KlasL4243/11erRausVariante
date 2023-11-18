@@ -2,8 +2,9 @@ from tkinter import Tk
 from tkinter.font import Font
 
 from game import Game
-from homeFrame import HomeFrame
-from newGameFrame import NewGameFrame
+from frames.homeFrame import HomeFrame
+from frames.newGameFrame import NewGameFrame
+from frames.resumeGameFrame import ResumeGameFrame
 
 class App(Tk):
     def __init__(self):
@@ -17,8 +18,7 @@ class App(Tk):
         self.width = 1080
         self.height = 2076
 
-        self.update()
-        self.is_mobile = self.geometry().startswith(f"{self.width}x{self.height}")
+        self.is_mobile = self.winfo_screenwidth() == str(self.width)
 
         if not self.is_mobile:
             # halfing size to fit desktop
@@ -32,6 +32,7 @@ class App(Tk):
 
         self.home_frame = HomeFrame(master=self)
         self.new_game_frame = NewGameFrame(master=self)
+        self.resume_game_frame = ResumeGameFrame(master=self)
 
 
         self.home_frame.grid(row=0, column=0)

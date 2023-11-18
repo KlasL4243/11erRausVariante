@@ -19,8 +19,11 @@ class Game:
         with open("data.json", mode='r', encoding="utf-8") as file:
             self.data = load(file)
 
-    def game_name_available(self, name: str) -> bool:
+    def available(self, name: str) -> bool:
         return name not in self.data.keys()
+
+    def saves_list(self) -> list[str]:
+        return [name for name, game_data in self.data.items() if not game_data["completed"]]
 
     @staticmethod
     def rotated(list_: list, index_: int) -> list:

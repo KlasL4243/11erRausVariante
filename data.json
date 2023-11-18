@@ -1,5 +1,5 @@
 {
-  "test1": "1212",
-  "test2": "1312",
-  "test3": "0123"
+  "Spiel01": {"completed": true},
+  "Lukas": {"completed": false},
+  "test3": {"completed": false}
 }
