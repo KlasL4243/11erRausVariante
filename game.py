@@ -15,13 +15,12 @@ class Game:
         self.rounds = list(range(1, self.max_cards, 1)) + list(range(max_cards, 0, -1))
         self.round_number = len(self.rounds)
 
-        with open("data.json", mode='x') as file:
-            dump({"test": "1212"}, file, indent=4)
-
-        with open("data.json", mode='r') as file:
+        # load games
+        with open("data.json", mode='r', encoding="utf-8") as file:
             self.data = load(file)
 
-        print(self.data)
+    def game_name_available(self, name: str) -> bool:
+        return name not in self.data.keys()
 
     @staticmethod
     def rotated(list_: list, index_: int) -> list:

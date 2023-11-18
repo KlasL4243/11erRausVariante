@@ -1,7 +1,9 @@
 from tkinter import Tk
+from tkinter.font import Font
 
 from game import Game
 from homeFrame import HomeFrame
+from newGameFrame import NewGameFrame
 
 class App(Tk):
     def __init__(self):
@@ -26,7 +28,12 @@ class App(Tk):
             self.geometry(f'{self.width}x{self.height}+0+0')
             self.resizable(False, False)
 
+        self.main_font = Font(family="Segoe UI", size=(24 if self.is_mobile else 36), weight="bold")
+
         self.home_frame = HomeFrame(master=self)
+        self.new_game_frame = NewGameFrame(master=self)
+
+
         self.home_frame.grid(row=0, column=0)
 
 
