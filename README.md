@@ -1,2 +1,2 @@
 # 11erRausVariante
-11erRaus Variante Mobile App Begleiter
+Mobile App Begleiter für ein Spiel das mit 11er Raus Karten gespielt wird
